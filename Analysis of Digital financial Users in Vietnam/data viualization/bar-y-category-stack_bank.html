@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = '堆叠条形图';
+
+option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['Low interest','Convenient payment','Customer service',
+            'Simple lending procedures','Low down payment','Quick screening']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Ngân hàng Á Châu',
+        'Ngân hàng thương mại cổ phần Sài Gòn Công Thương',
+        'Ngân hàng thương mại cổ phần Quốc Tế Việt Nam (VIB)',
+        'Ngân hàng Nông nghiệp và phát triển nông thôn ( AgriBank)',
+        'Ngân hàng Thương mại Cổ phần Hàng hải Việt Nam (Maritime Bank)',
+        'Ngân hàng Phương Đông',
+        'Ngân hàng thương mại cổ phần Đông Á',
+        'Ngân hàng Xuất Nhập khẩu Việt Nam (Eximbank)',
+        'Ngân hàng Tiên Phong (TPBank)',
+        'Ngân hàng thương mại cổ phần Sài Gòn Thương Tín (Sacombank)',
+        'Ngân hàng TMCP Ngoại Thương Việt Nam (Vietcombank)',
+        'Ngân hàng Việt Nam Thịnh Vượng (VPBank)',
+        'Ngân hàng Việt Nam Thương Tín (Vietbank)',
+        'Ngân hàng thương mại cổ phần Kỹ thương Việt Nam (Techcombank)',
+        'Ngân hàng thương mại cổ phần Quân đội']
+    },
+    series: [
+        {
+            name: 'Low interest',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [147, 19, 23, 152, 49, 49, 83, 20, 89, 126, 581, 41, 37, 70, 20]
+        },
+        {
+            name: 'Convenient payment',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [100, 25, 12, 131, 27, 18, 65, 17, 61, 107, 524, 42, 32, 72, 18]
+        },
+        {
+            name: 'Customer service',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [71, 9, 12, 80, 18, 12, 41, 9, 47, 74, 336, 31, 29, 49, 13]
+        },
+        {
+            name: 'Simple lending procedures',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [132, 22, 27, 114, 47, 25, 74, 15, 72, 109, 457, 42, 35, 66, 24]
+        },
+        {
+            name: 'Low down payment',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [11, 2, 2, 15, 3, 2, 9, 1, 11, 12, 79, 7, 7, 9, 5]
+        },
+        {
+            name: 'Quick screening',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [10, 2, 4, 16, 4, 2, 9, 1, 7, 13, 91, 9, 8, 14, 1]
+        }
+    ]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

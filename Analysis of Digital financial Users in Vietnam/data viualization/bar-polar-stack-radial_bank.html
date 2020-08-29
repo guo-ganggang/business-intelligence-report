@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = '极坐标系下的堆叠柱状图';
+
+option = {
+    angleAxis: {
+        type: 'category',
+        data: [
+        'Ngân hàng Á Châu',
+        'Ngân hàng thương mại cổ phần Sài Gòn Công Thương',
+        'Ngân hàng thương mại cổ phần Quốc Tế Việt Nam (VIB)',
+        'Ngân hàng Nông nghiệp và phát triển nông thôn ( AgriBank)',
+        'Ngân hàng Thương mại Cổ phần Hàng hải Việt Nam (Maritime Bank)',
+        'Ngân hàng Phương Đông',
+        'Ngân hàng thương mại cổ phần Đông Á',
+        'Ngân hàng Xuất Nhập khẩu Việt Nam (Eximbank)',
+        'Ngân hàng Tiên Phong (TPBank)',
+        'Ngân hàng thương mại cổ phần Sài Gòn Thương Tín (Sacombank)',
+        'Ngân hàng TMCP Ngoại Thương Việt Nam (Vietcombank)',
+        'Ngân hàng Việt Nam Thịnh Vượng (VPBank)',
+        'Ngân hàng Việt Nam Thương Tín (Vietbank)',
+        'Ngân hàng thương mại cổ phần Kỹ thương Việt Nam (Techcombank)',
+        'Ngân hàng thương mại cổ phần Quân đội'
+        ],
+        z: 10
+    },
+    radiusAxis: {
+    },
+    polar: {
+    },
+    series: [{
+        type: 'bar',
+        data: [0.85, 0.89, 0.76, 0.85, 0.75, 0.88, 0.83, 0.82, 0.86, 0.85, 0.89, 0.95, 0.86, 0.93, 0.89],
+        coordinateSystem: 'polar',
+        name: 'satisficing_customer_service_ratio',
+        stack: 'a'
+    }, {
+        type: 'bar',
+        data: [0.89, 0.91, 0.87, 0.91, 0.82, 0.88, 0.92, 0.91, 0.86, 0.93, 0.93, 0.95, 0.85, 0.93, 0.97],
+        coordinateSystem: 'polar',
+        name: 'satisficing_documention_process_ratio',
+        stack: 'a'
+    }, {
+        type: 'bar',
+        data: [0.85, 0.97, 0.92, 0.88, 0.76, 0.88, 0.84, 0.94, 0.89, 0.9, 0.95, 0.92, 0.93, 0.92, 0.92],
+        coordinateSystem: 'polar',
+        name: 'satisficing_internet_banking_facility_ratio',
+        stack: 'a'
+    },{
+        type: 'bar',
+        data: [0.64, 0.29, 0.63, 0.45, 0.66, 0.68, 0.63, 0.38, 0.7, 0.6, 0.47, 0.66, 0.44, 0.5, 0.46],
+        coordinateSystem: 'polar',
+        name: 'receive_telemarketing_ratio',
+        stack: 'a'
+    }, {
+        type: 'bar',
+        data: [0.88, 0.77, 0.71, 0.95, 0.68, 0.86, 0.86, 0.82, 0.86, 0.87, 0.94, 0.91, 0.99, 0.92, 0.97],
+        coordinateSystem: 'polar',
+        name: 'satisficing_ATMs_accessibility_ratio',
+        stack: 'a'
+    }, {
+        type: 'bar',
+        data: [0.46, 0.74, 0.63, 0.5, 0.45, 0.27, 0.64, 0.62, 0.59, 0.56, 0.56, 0.53, 0.53, 0.61, 0.73],
+        coordinateSystem: 'polar',
+        name: 'customer_loyalty_mt_3year_ratio',
+        stack: 'a'
+    }],
+    legend: {
+        show: true,
+        data: ['satisficing_customer_service_ratio', 'satisficing_documention_process_ratio',
+            'satisficing_internet_banking_facility_ratio','receive_telemarketing_ratio',
+            'satisficing_ATMs_accessibility_ratio', 'customer_loyalty_mt_3year_ratio']
+    }
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

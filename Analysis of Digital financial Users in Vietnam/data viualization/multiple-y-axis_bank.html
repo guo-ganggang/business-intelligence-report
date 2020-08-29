@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = 'Bank、Average Income and Cryptocurrency';
+
+var colors = ['#5793f3', '#66CC00', '#FF6666'];
+
+option = {
+    color: colors,
+
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    grid: {
+        right: '20%'
+    },
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+        data:['Average Income','Sample Size','Positive Attitude']
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            data: ['Ngân hàng Quốc Dân (NCB)','Ngân hàng Á Châu','Ngân hàng số Timo','Ngân hàng Bưu điện Liên Việt',
+                'Ngân hàng thương mại cổ phần Sài Gòn Công Thương','Ngân hàng TMCP Đại Chúng Việt Nam',
+                'Ngân hàng thương mại cổ phần Quốc Tế Việt Nam (VIB)',
+                'Ngân hàng Nông nghiệp và phát triển nông thôn ( AgriBank)',
+                'Ngân hàng Thương mại Cổ phần Hàng hải Việt Nam (Maritime Bank)',
+                'Ngân hàng Phương Đông','Ngân hàng thương mại cổ phần Đông Á',
+                'Ngân hàng thương mại cổ phần Phát triển Thành phố Hồ Chí Minh (HDBank)',
+                'Ngân hàng Xuất Nhập khẩu Việt Nam (Eximbank)','Ngân hàng Tiên Phong (TPBank)',
+                'Ngân hàng thương mại cổ phần An Bình (ABBank)','Ngân hàng thương mại cổ phần Sài Gòn Thương Tín (Sacombank)',
+                'Ngân hàng TMCP Ngoại Thương Việt Nam (Vietcombank)',
+                'Ngân hàng thương mại cổ phần Nam Á',
+                'Ngân hàng Việt Nam Thịnh Vượng (VPBank)',
+                'Ngân hàng thương mại cổ phần Việt Á (VietA Bank)',
+                'Ngân hàng Việt Nam Thương Tín (Vietbank)',
+                'Ngân hàng thương mại cổ phần Sài Gòn (SCB)',
+                'Ngân hàng thương mại cổ phần Bắc Á',
+                'Ngân hàng thương mại cổ phần Đông Nam Á (SeABank)',
+                'Ngân hàng thương mại cổ phần Kỹ thương Việt Nam (Techcombank)',
+                'Ngân hàng thương mại cổ phần Sài Gòn -Hà Nội (SHB)',
+                'Ngân hàng thương mại cổ phần Quân đội',
+                'Ngân hàng Đại Dương (OceanBank)'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            name: 'Average Income',
+            min: 0,
+            max: 967,
+            position: 'right',
+            axisLine: {
+                lineStyle: {
+                    color: colors[0]
+                }
+            },
+            axisLabel: {
+                formatter: '{value} USD'
+            }
+        },
+        {
+            type: 'value',
+            name: 'Sample Size',
+            min: 0,
+            max: 971,
+            position: 'right',
+            offset: 80,
+            axisLine: {
+                lineStyle: {
+                    color: colors[1]
+                }
+            },
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+        {
+            type: 'value',
+            name: 'Bank Customers Who are Positive about Cryptocurrencies',
+            min: 0,
+            max: 0.8,
+            position: 'left',
+            axisLine: {
+                lineStyle: {
+                    color: colors[2]
+                }
+            },
+            axisLabel: {
+                formatter: '{value} %'
+            }
+        }
+    ],
+    series: [
+        {
+            name:'Average Income',
+            type:'bar',
+            data:[558.6, 558.62, 519.17, 368.43, 515.74, 966.33, 537.18, 462.5, 624.27, 465.05, 530.02, 690.36, 511.88, 764.55, 477.56, 548.55, 488.64, 449.36, 603.85, 472.8, 500.37, 604.25, 515.8, 728.43, 581.47, 386.93, 441.54, 781.0]
+        },
+        {
+            name:'Amount',
+            type:'bar',
+            yAxisIndex: 1,
+            data:[5, 255, 24, 7, 35, 6, 38, 256, 85, 73, 135, 14, 34, 159, 9, 217, 971, 11, 74, 5, 73, 16, 5, 23, 126, 15, 37, 11]
+        },
+        {
+            name:'Positive Attitude',
+            type:'line',
+            yAxisIndex: 2,
+            data:[0.8, 0.01, 0.04, 0.29, 0.09, 0.33, 0.05, 0.03, 0.01, 0.01, 0.01, 0.21, 0.03, 0.01, 0.11, 0.02, 0.01, 0.09, 0.01, 0.2, 0.03, 0.06, 0.0, 0.13, 0.05, 0.13, 0.16, 0.27]
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

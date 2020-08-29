@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+
+    var monthes = ['Investing', 'Trading', 'Payment', 'Store of value', 'Other'];
+    var years = ['<=215USD','(215,644]USD','(644,1073]USD','(1073,1717]USD','(1717,2146]USD','(2146,3433]USD','>=3433USD'];
+
+    var data = [[0, 0, 236], [0, 1, 175], [0, 2, 288], [0, 3, 103], [0, 4, 11], [1, 0, 489], [1, 1, 263], [1, 2, 577], [1, 3, 191], [1, 4, 5], [2, 0, 126], [2, 1, 73], [2, 2, 138], [2, 3, 55], [2, 4, 1], [3, 0, 46], [3, 1, 30], [3, 2, 26], [3, 3, 14], [3, 4, 1], [4, 0, 11], [4, 1, 4], [4, 2, 12], [4, 3, 4], [4, 4, 0], [5, 0, 3], [5, 1, 8], [5, 2, 5], [5, 3, 1], [5, 4, 0], [6, 0, 6], [6, 1, 8], [6, 2, 3], [6, 3, 1], [6, 4, 0]];;
+    option = {
+        tooltip: {},
+        visualMap: {
+            max: 20,
+            inRange: {
+                color: ['#FFFFFF','#FFFF00','#FFCC00','#CCFFFF','#CCCC00','#99CCFF','#33CC33','#66CCCC','#CCCCFF','#FF6666']
+            }
+        },
+        xAxis3D: {
+            type: 'category',
+            name : 'Usages of holding crypto',
+            data: monthes
+        },
+        yAxis3D: {
+            type: 'category',
+            name : 'Income',
+            data: years
+        },
+        zAxis3D: {
+            type: 'value',
+            name : 'Number of samples',
+
+        },
+        grid3D: {
+            boxWidth: 200,
+            boxDepth: 80,
+            light: {
+                main: {
+                    intensity: 1.2
+                },
+                ambient: {
+                    intensity: 0.3
+                }
+            }
+        },
+        series: [{
+            type: 'bar3D',
+            data: data.map(function (item) {
+                return {
+                    value: [item[1], item[0], item[2]]
+                }
+            }),
+            shading: 'color',
+
+            label: {
+                show: false,
+                textStyle: {
+                    fontSize: 16,
+                    borderWidth: 1
+                }
+            },
+
+            itemStyle: {
+                opacity: 0.4
+            },
+
+            emphasis: {
+                label: {
+                    textStyle: {
+                        fontSize: 20,
+                        color: '#900'
+                    }
+                },
+                itemStyle: {
+                    color: '#900'
+                }
+            }
+        }]
+    };;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+</body>
+</html>

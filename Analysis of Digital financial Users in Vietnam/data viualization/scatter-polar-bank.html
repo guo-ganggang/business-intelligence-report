@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+var hours = ['Ngân hàng Á Châu',
+    'Ngân hàng thương mại cổ phần Sài Gòn Công Thương',
+    'Ngân hàng thương mại cổ phần Quốc Tế Việt Nam (VIB)',
+    'Ngân hàng Nông nghiệp và phát triển nông thôn ( AgriBank)',
+    'Ngân hàng Thương mại Cổ phần Hàng hải Việt Nam (Maritime Bank)',
+    'Ngân hàng Phương Đông',
+    'Ngân hàng thương mại cổ phần Đông Á',
+    'Ngân hàng Xuất Nhập khẩu Việt Nam (Eximbank)',
+    'Ngân hàng Tiên Phong (TPBank)',
+    'Ngân hàng thương mại cổ phần Sài Gòn Thương Tín (Sacombank)',
+    'Ngân hàng TMCP Ngoại Thương Việt Nam (Vietcombank)',
+    'Ngân hàng Việt Nam Thịnh Vượng (VPBank)',
+    'Ngân hàng Việt Nam Thương Tín (Vietbank)',
+    'Ngân hàng thương mại cổ phần Kỹ thương Việt Nam (Techcombank)',
+    'Ngân hàng thương mại cổ phần Quân đội'
+];
+var days = ['Branch banking','Mobile services','ATM','Phone (Voice banking)','Web banking'];
+
+var data =
+    [[0, 0, 51], [0, 1, 6], [0, 2, 6], [0, 3, 80], [0, 4, 10], [0, 5, 10], [0, 6, 22], [0, 7, 6], [0, 8, 32], [0, 9, 62], [0, 10, 251], [0, 11, 20], [0, 12, 19], [0, 13, 27], [0, 14, 10], [1, 0, 126], [1, 1, 9], [1, 2, 18], [1, 3, 116], [1, 4, 46], [1, 5, 26], [1, 6, 48], [1, 7, 16], [1, 8, 62], [1, 9, 96], [1, 10, 482], [1, 11, 44], [1, 12, 31], [1, 13, 76], [1, 14, 21], [2, 0, 194], [2, 1, 32], [2, 2, 31], [2, 3, 239], [2, 4, 62], [2, 5, 56], [2, 6, 122], [2, 7, 29], [2, 8, 119], [2, 9, 184], [2, 10, 846], [2, 11, 62], [2, 12, 65], [2, 13, 110], [2, 14, 32], [3, 0, 10], [3, 1, 3], [3, 2, 0], [3, 3, 21], [3, 4, 1], [3, 5, 3], [3, 6, 5], [3, 7, 1], [3, 8, 10], [3, 9, 15], [3, 10, 80], [3, 11, 6], [3, 12, 5], [3, 13, 5], [3, 14, 3], [4, 0, 110], [4, 1, 7], [4, 2, 17], [4, 3, 76], [4, 4, 13], [4, 5, 19], [4, 6, 45], [4, 7, 12], [4, 8, 60], [4, 9, 73], [4, 10, 526], [4, 11, 41], [4, 12, 34], [4, 13, 61], [4, 14, 17]];
+option = {
+    title: {
+        text: 'channels_for_bank_services_mapping',
+        link: 'https://web.sageit.vip/survey/statistic'
+    },
+    legend: {
+        data: ['channels_for_bank_services_mapping'],
+        left: 'right'
+    },
+    polar: {},
+    tooltip: {
+        formatter: function (params) {
+            return params.value[2] + ' commits in ' + hours[params.value[1]] + ' of ' + days[params.value[0]];
+        }
+    },
+    angleAxis: {
+        type: 'category',
+        data: hours,
+        boundaryGap: false,
+        splitLine: {
+            show: true,
+            lineStyle: {
+                color: '#999',
+                type: 'dashed'
+            }
+        },
+        axisLine: {
+            show: false
+        }
+    },
+    radiusAxis: {
+        type: 'category',
+        data: days,
+        axisLine: {
+            show: false
+        },
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    series: [{
+        name: 'channels_for_bank_services_mapping',
+        type: 'scatter',
+        coordinateSystem: 'polar',
+        symbolSize: function (val) {
+            return val[2] * 0.1;
+        },
+        data: data,
+        animationDelay: function (idx) {
+            return idx * 5;
+        }
+    }]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

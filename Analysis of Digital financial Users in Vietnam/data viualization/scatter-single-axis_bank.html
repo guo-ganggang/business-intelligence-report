@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = '单轴散点图';
+
+var hours = ['Ngân hàng Á Châu',
+            'Ngân hàng thương mại cổ phần Sài Gòn Công Thương',
+            'Ngân hàng thương mại cổ phần Quốc Tế Việt Nam (VIB)',
+            'Ngân hàng Nông nghiệp và phát triển nông thôn ( AgriBank)',
+            'Ngân hàng Thương mại Cổ phần Hàng hải Việt Nam (Maritime Bank)',
+            'Ngân hàng Phương Đông',
+            'Ngân hàng thương mại cổ phần Đông Á',
+            'Ngân hàng Xuất Nhập khẩu Việt Nam (Eximbank)',
+            'Ngân hàng Tiên Phong (TPBank)',
+            'Ngân hàng thương mại cổ phần Sài Gòn Thương Tín (Sacombank)',
+            'Ngân hàng TMCP Ngoại Thương Việt Nam (Vietcombank)',
+            'Ngân hàng Việt Nam Thịnh Vượng (VPBank)',
+            'Ngân hàng Việt Nam Thương Tín (Vietbank)',
+            'Ngân hàng thương mại cổ phần Kỹ thương Việt Nam (Techcombank)',
+            'Ngân hàng thương mại cổ phần Quân đội'
+            ]
+
+var days = ['Credit card', 'Investment product', 'Personal loan', 'Car loan', 'Saving account'];
+
+var data =
+    [[0, 0, 140], [0, 1, 14], [0, 2, 22], [0, 3, 169], [0, 4, 45], [0, 5, 36], [0, 6, 78], [0, 7, 18], [0, 8, 87], [0, 9, 133], [0, 10, 657], [0, 11, 47], [0, 12, 50], [0, 13, 90], [0, 14, 24], [1, 0, 12], [1, 1, 2], [1, 2, 3], [1, 3, 11], [1, 4, 3], [1, 5, 3], [1, 6, 7], [1, 7, 4], [1, 8, 8], [1, 9, 22], [1, 10, 65], [1, 11, 2], [1, 12, 3], [1, 13, 9], [1, 14, 1], [2, 0, 38], [2, 1, 4], [2, 2, 3], [2, 3, 43], [2, 4, 9], [2, 5, 5], [2, 6, 13], [2, 7, 9], [2, 8, 18], [2, 9, 32], [2, 10, 152], [2, 11, 15], [2, 12, 10], [2, 13, 18], [2, 14, 5], [3, 0, 18], [3, 1, 1], [3, 2, 4], [3, 3, 13], [3, 4, 8], [3, 5, 6], [3, 6, 3], [3, 7, 1], [3, 8, 12], [3, 9, 23], [3, 10, 51], [3, 11, 0], [3, 12, 5], [3, 13, 6], [3, 14, 1], [4, 0, 157], [4, 1, 25], [4, 2, 23], [4, 3, 138], [4, 4, 47], [4, 5, 49], [4, 6, 89], [4, 7, 21], [4, 8, 99], [4, 9, 122], [4, 10, 512], [4, 11, 41], [4, 12, 37], [4, 13, 82], [4, 14, 20]];
+option = {
+    tooltip: {
+        position: 'top'
+    },
+    title: [],
+    singleAxis: [],
+    series: []
+};
+
+echarts.util.each(days, function (day, idx) {
+    option.title.push({
+        textBaseline: 'middle',
+        top: (idx + 0.5) * 100 / 5 + '%',
+        text: day
+    });
+    option.singleAxis.push({
+        left: 150,
+        type: 'category',
+        boundaryGap: false,
+        data: hours,
+        top: (idx * 100 / 5 + 5) + '%',
+        height: (100 / 5 - 10) + '%',
+        axisLabel: {
+            interval: 2
+        }
+    });
+    option.series.push({
+        singleAxisIndex: idx,
+        coordinateSystem: 'singleAxis',
+        type: 'scatter',
+        data: [],
+        symbolSize: function (dataItem) {
+            return dataItem[1] * 0.2;
+        }
+    });
+});
+
+echarts.util.each(data, function (dataItem) {
+    option.series[dataItem[0]].data.push([dataItem[1], dataItem[2]]);
+});;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
